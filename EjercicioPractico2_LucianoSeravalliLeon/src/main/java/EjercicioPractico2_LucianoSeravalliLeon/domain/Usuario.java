@@ -28,7 +28,7 @@ public class Usuario implements Serializable {
     private Rol rol;
 
     @Column(name = "ac2vo")
-    private Boolean ac2vo = true;
+    private Boolean ac2vo;
 
     @Column(name = "fecha_creacion", insertable = false, updatable = false)
     private LocalDateTime fechaCreacion;
