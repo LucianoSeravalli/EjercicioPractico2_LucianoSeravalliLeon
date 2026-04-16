@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{general/fragmentosGeneral :: head('Consultas de eventos')}"></head>
+<body>
+
+<header th:replace="~{general/fragmentosGeneral :: header}"></header>
+
+<main class="container my-5">
+    <div class="mb-4">
+        <h2 class="section-title">Consultas Avanzadas de Eventos</h2>
+        <p class="section-subtitle">
+            Realice búsquedas por nombre, por rango de fechas o consulte los eventos activos.
+        </p>
+    </div>
+
+    <div class="form-card mb-4">
+        <form th:action="@{/eventos/consultas}" method="get">
+            <div class="row">
+                <div class="col-md-4 mb-3">
+                    <label class="form-label">Buscar por nombre</label>
+                    <input type="text" name="nombre" class="form-control" placeholder="Ingrese el nombre del evento">
+                </div>
+
+                <div class="col-md-3 mb-3">
+                    <label class="form-label">Fecha inicio</label>
+                    <input type="date" name="inicio" class="form-control">
+                </div>
+
+                <div class="col-md-3 mb-3">
+                    <label class="form-label">Fecha fin</label>
+                    <input type="date" name="fin" class="form-control">
+                </div>
+
+                <div class="col-md-2 mb-3 d-flex align-items-end">
+                    <button type="submit" class="btn btn-principal w-100">
+                        <i class="bi bi-search me-1"></i> Consultar
+                    </button>
+                </div>
+            </div>
+        </form>
+    </div>
+
+    <div class="banner-mini mb-4">
+        <strong>Total de eventos activos:</strong>
+        <span th:text="${totalActivos}"></span>
+    </div>
+
+    <div class="tabla-personalizada">
+        <div class="table-responsive">
+            <table class="table table-hover align-middle mb-0">
+                <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Nombre</th>
+                    <th>Descripción</th>
+                    <th>Fecha</th>
+                    <th>Capacidad</th>
+                    <th>Estado</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="evento : ${resultados}">
+                    <td th:text="${evento.id}"></td>
+                    <td th:text="${evento.nombre}"></td>
+                    <td th:text="${evento.descripcion}"></td>
+                    <td th:text="${evento.fecha}"></td>
+                    <td th:text="${evento.capacidad}"></td>
+                    <td>
+                        <span th:if="${evento.ac2vo}" class="estado-activo">Activo</span>
+                        <span th:unless="${evento.ac2vo}" class="estado-inactivo">Inactivo</span>
+                    </td>
+                </tr>
+                <tr th:if="${#lists.isEmpty(resultados)}">
+                    <td colspan="6" class="text-center py-4 text-muted">
+                        No se encontraron resultados.
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</main>
+
+<footer th:replace="~{general/fragmentosGeneral :: footer}"></footer>
+<div th:replace="~{general/fragmentosGeneral :: scripts}"></div>
+
+</body>
+</html>

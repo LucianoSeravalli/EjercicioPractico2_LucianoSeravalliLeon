@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{general/fragmentosGeneral :: head('Detalle de evento')}"></head>
+<body>
+
+<header th:replace="~{general/fragmentosGeneral :: header}"></header>
+
+<main class="container my-5">
+    <div class="mb-4">
+        <h2 class="section-title">Detalle del Evento</h2>
+        <p class="section-subtitle">
+            Visualice la información completa del evento seleccionado.
+        </p>
+    </div>
+
+    <div class="row justify-content-center">
+        <div class="col-lg-8">
+            <div class="detalle-box">
+                <p><strong>ID:</strong> <span th:text="${evento.id}"></span></p>
+                <p><strong>Nombre:</strong> <span th:text="${evento.nombre}"></span></p>
+                <p><strong>Descripción:</strong> <span th:text="${evento.descripcion}"></span></p>
+                <p><strong>Fecha:</strong> <span th:text="${evento.fecha}"></span></p>
+                <p><strong>Capacidad:</strong> <span th:text="${evento.capacidad}"></span></p>
+                <p>
+                    <strong>Estado:</strong>
+                    <span th:if="${evento.ac2vo}" class="estado-activo">Activo</span>
+                    <span th:unless="${evento.ac2vo}" class="estado-inactivo">Inactivo</span>
+                </p>
+
+                <div class="mt-4 d-flex flex-wrap gap-2">
+                    <a th:href="@{/eventos/editar/{id}(id=${evento.id})}" class="btn btn-principal">
+                        <i class="bi bi-pencil-fill me-1"></i> Editar
+                    </a>
+                    <a th:href="@{/eventos}" class="btn btn-outline-secondary">
+                        <i class="bi bi-arrow-left-circle me-1"></i> Volver
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+
+<footer th:replace="~{general/fragmentosGeneral :: footer}"></footer>
+<div th:replace="~{general/fragmentosGeneral :: scripts}"></div>
+
+</body>
+</html>

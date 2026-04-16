@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{general/fragmentosGeneral :: head('Formulario de evento')}"></head>
+<body>
+
+<header th:replace="~{general/fragmentosGeneral :: header}"></header>
+
+<main class="container my-5">
+    <div class="mb-4">
+        <h2 class="section-title" th:text="${evento.id == null ? 'Nuevo Evento' : 'Editar Evento'}"></h2>
+        <p class="section-subtitle">
+            Complete la información general del evento.
+        </p>
+    </div>
+
+    <div class="row justify-content-center">
+        <div class="col-lg-8">
+            <div class="form-card">
+                <form th:action="@{/eventos/guardar}" th:object="${evento}" method="post">
+                    <input type="hidden" th:field="*{id}">
+
+                    <div class="mb-3">
+                        <label class="form-label">Nombre del evento</label>
+                        <input type="text" class="form-control" th:field="*{nombre}" placeholder="Ingrese el nombre del evento" required>
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label">Descripción</label>
+                        <textarea class="form-control" rows="4" th:field="*{descripcion}" placeholder="Ingrese la descripción del evento" required></textarea>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label">Fecha</label>
+                            <input type="date" class="form-control" th:field="*{fecha}" required>
+                        </div>
+
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label">Capacidad máxima</label>
+                            <input type="number" class="form-control" th:field="*{capacidad}" placeholder="Ingrese la capacidad" required>
+                        </div>
+                    </div>
+
+                    <div class="mb-4">
+                        <label class="form-label">Estado</label>
+                        <select class="form-select" th:field="*{ac2vo}">
+                            <option th:value="true">Activo</option>
+                            <option th:value="false">Inactivo</option>
+                        </select>
+                    </div>
+
+                    <div class="d-flex flex-wrap gap-2">
+                        <button type="submit" class="btn btn-principal">
+                            <i class="bi bi-save-fill me-1"></i> Guardar
+                        </button>
+                        <a th:href="@{/eventos}" class="btn btn-outline-secondary">
+                            <i class="bi bi-arrow-left-circle me-1"></i> Volver
+                        </a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</main>
+
+<footer th:replace="~{general/fragmentosGeneral :: footer}"></footer>
+<div th:replace="~{general/fragmentosGeneral :: scripts}"></div>
+
+</body>
+</html>

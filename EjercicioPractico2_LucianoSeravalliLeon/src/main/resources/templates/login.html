@@ -1,15 +1,48 @@
 <!DOCTYPE html>
-<!--
-Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
-Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this template
--->
-<html>
-    <head>
-        <title>TODO supply a title</title>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    </head>
-    <body>
-        <div>TODO write content</div>
-    </body>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{general/fragmentosGeneral :: head('Iniciar sesión')}"></head>
+<body>
+
+<main class="container py-5">
+    <div class="row justify-content-center align-items-center" style="min-height: 85vh;">
+        <div class="col-lg-5 col-md-7">
+            <div class="form-card">
+                <div class="text-center mb-4">
+                    <i class="bi bi-shield-lock-fill fs-1 text-primary"></i>
+                    <h2 class="section-title mt-3 mb-2">Iniciar sesión</h2>
+                    <p class="text-muted mb-0">
+                        Accede a la plataforma de gestión de eventos.
+                    </p>
+                </div>
+
+                <form th:action="@{/login}" method="post">
+                    <div class="mb-3">
+                        <label class="form-label">Correo electrónico</label>
+                        <input type="text" name="username" class="form-control" placeholder="Ingrese su correo">
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label">Contraseña</label>
+                        <input type="password" name="password" class="form-control" placeholder="Ingrese su contraseña">
+                    </div>
+
+                    <button type="submit" class="btn btn-principal w-100">
+                        <i class="bi bi-box-arrow-in-right me-1"></i> Ingresar
+                    </button>
+                </form>
+
+                <div th:if="${param.error}" class="alert alert-danger mt-4 mb-0">
+                    Credenciales incorrectas. Intente nuevamente.
+                </div>
+
+                <div th:if="${param.logout}" class="alert alert-success mt-4 mb-0">
+                    Su sesión ha sido cerrada correctamente.
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+
+<div th:replace="~{general/fragmentosGeneral :: scripts}"></div>
+</body>
 </html>

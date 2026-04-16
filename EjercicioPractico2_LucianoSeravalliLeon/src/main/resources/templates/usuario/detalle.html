@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{general/fragmentosGeneral :: head('Detalle de usuario')}"></head>
+<body>
+
+<header th:replace="~{general/fragmentosGeneral :: header}"></header>
+
+<main class="container my-5">
+    <div class="mb-4">
+        <h2 class="section-title">Detalle del Usuario</h2>
+        <p class="section-subtitle">
+            Visualice la información completa del usuario seleccionado.
+        </p>
+    </div>
+
+    <div class="row justify-content-center">
+        <div class="col-lg-8">
+            <div class="detalle-box">
+                <p><strong>ID:</strong> <span th:text="${usuario.id}"></span></p>
+                <p><strong>Nombre:</strong> <span th:text="${usuario.nombre}"></span></p>
+                <p><strong>Correo:</strong> <span th:text="${usuario.email}"></span></p>
+                <p><strong>Contraseña:</strong> <span th:text="${usuario.password}"></span></p>
+                <p><strong>Rol:</strong> <span th:text="${usuario.rol != null ? usuario.rol.nombre : 'Sin rol'}"></span></p>
+                <p>
+                    <strong>Estado:</strong>
+                    <span th:if="${usuario.ac2vo}" class="estado-activo">Activo</span>
+                    <span th:unless="${usuario.ac2vo}" class="estado-inactivo">Inactivo</span>
+                </p>
+                <p><strong>Fecha de creación:</strong> <span th:text="${usuario.fechaCreacion}"></span></p>
+
+                <div class="mt-4 d-flex flex-wrap gap-2">
+                    <a th:href="@{/usuarios/editar/{id}(id=${usuario.id})}" class="btn btn-principal">
+                        <i class="bi bi-pencil-fill me-1"></i> Editar
+                    </a>
+                    <a th:href="@{/usuarios}" class="btn btn-outline-secondary">
+                        <i class="bi bi-arrow-left-circle me-1"></i> Volver
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+
+<footer th:replace="~{general/fragmentosGeneral :: footer}"></footer>
+<div th:replace="~{general/fragmentosGeneral :: scripts}"></div>
+
+</body>
+</html>
