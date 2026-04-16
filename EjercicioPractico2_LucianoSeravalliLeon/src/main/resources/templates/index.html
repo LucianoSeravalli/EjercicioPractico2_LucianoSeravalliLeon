@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+    <head th:replace="~{general/fragmentosGeneral :: head('Inicio')}"></head>
+    <body>
+
+        <header th:replace="~{general/fragmentosGeneral :: header}"></header>
+
+        <main class="container my-5">
+            <section class="hero-section mb-5">
+                <div class="row">
+                    <div class="col-lg-8">
+                        <h1>Gestión inteligente de eventos y usuarios</h1>
+                        <p class="mt-3">
+                            Administra eventos, controla usuarios, asigna roles y consulta información relevante
+                            desde una plataforma moderna, clara y profesional.
+                        </p>
+                        <div class="mt-4 d-flex flex-wrap gap-3">
+                            <a th:href="@{/eventos}" class="btn btn-principal">
+                                <i class="bi bi-calendar2-event me-1"></i> Ver eventos
+                            </a>
+                            <a th:href="@{/usuarios}" class="btn btn-secundario">
+                                <i class="bi bi-people me-1"></i> Administrar usuarios
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="mb-5">
+                <div class="text-center mb-4">
+                    <h2 class="section-title">¿Qué puedes hacer en el sistema?</h2>
+                    <p class="section-subtitle mx-auto">
+                        La plataforma permite una administración integral con enfoque profesional, seguridad y facilidad de uso.
+                    </p>
+                </div>
+
+                <div class="row g-4">
+                    <div class="col-md-4">
+                        <div class="card tarjeta-panel h-100 p-4">
+                            <div class="icon-box">
+                                <i class="bi bi-people-fill"></i>
+                            </div>
+                            <h4>Usuarios</h4>
+                            <p>
+                                Crea, edita, elimina y consulta usuarios del sistema, manteniendo control sobre su información y acceso.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="col-md-4">
+                        <div class="card tarjeta-panel h-100 p-4">
+                            <div class="icon-box">
+                                <i class="bi bi-person-badge-fill"></i>
+                            </div>
+                            <h4>Roles</h4>
+                            <p>
+                                Administra roles del sistema y organiza los permisos según el tipo de usuario.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="col-md-4">
+                        <div class="card tarjeta-panel h-100 p-4">
+                            <div class="icon-box">
+                                <i class="bi bi-calendar-event-fill"></i>
+                            </div>
+                            <h4>Eventos</h4>
+                            <p>
+                                Gestiona eventos de forma ordenada, con capacidad, fechas, descripción y estado activo o inactivo.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="row align-items-center g-4">
+                <div class="col-lg-6">
+                    <img th:src="@{/img/about-eventos.png}" alt="Equipo de eventos" class="img-about">
+                </div>
+                <div class="col-lg-6">
+                    <div class="banner-mini">
+                        <h3 class="section-title mb-3">¿Quiénes somos?</h3>
+                        <p>
+                            En EventosPlus creemos que una buena gestión comienza con una interfaz clara,
+                            procesos ordenados y herramientas confiables. Esta plataforma está diseñada
+                            para centralizar la administración de usuarios, roles y eventos en un solo lugar.
+                        </p>
+                        <p class="mb-0">
+                            Nuestro enfoque combina funcionalidad, seguridad y una experiencia visual agradable para el usuario.
+                        </p>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <footer th:replace="~{general/fragmentosGeneral :: footer}"></footer>
+        <div th:replace="~{general/fragmentosGeneral :: scripts}"></div>
+
+    </body>
+</html>
