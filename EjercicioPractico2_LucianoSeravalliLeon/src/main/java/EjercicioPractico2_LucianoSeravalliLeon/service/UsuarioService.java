@@ -9,13 +9,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 @Service
 public class UsuarioService {
-    
+
     @Autowired
     private UsuarioRepository usuarioRepository;
-    
+
     @Autowired
     private CorreoService correoService;
-
 
     public List<Usuario> listarUsuarios() {
         return usuarioRepository.findAll();
@@ -26,7 +25,14 @@ public class UsuarioService {
         Usuario usuarioGuardado = usuarioRepository.save(usuario);
 
         if (esNuevo) {
-            correoService.enviarCorreoBienvenida(usuarioGuardado.getEmail(), usuarioGuardado.getNombre());
+            try {
+                correoService.enviarCorreoBienvenida(
+                        usuarioGuardado.getEmail(),
+                        usuarioGuardado.getNombre()
+                );
+            } catch (Exception e) {
+                System.out.println("Error enviando correo: " + e.getMessage());
+            }
         }
 
         return usuarioGuardado;

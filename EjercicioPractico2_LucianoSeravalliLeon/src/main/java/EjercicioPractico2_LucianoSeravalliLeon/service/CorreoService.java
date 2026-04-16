@@ -1,4 +1,3 @@
-
 package EjercicioPractico2_LucianoSeravalliLeon.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,8 +14,16 @@ public class CorreoService {
     public void enviarCorreoBienvenida(String destino, String nombre) {
         SimpleMailMessage mensaje = new SimpleMailMessage();
         mensaje.setTo(destino);
-        mensaje.setSubject("Bienvenido a la plataforma de eventos");
-        mensaje.setText("Hola " + nombre + ", tu usuario fue creado correctamente.");
+        mensaje.setSubject("Bienvenido a EventosPlus");
+        mensaje.setText(
+                "Hola " + nombre + ",\n\n"
+                + "Bienvenido(a) a EventosPlus.\n"
+                + "Nos complace informarte que tu cuenta ha sido creada exitosamente.\n\n"
+                + "Ya puedes iniciar sesión en la plataforma para gestionar eventos y consultar información.\n\n"
+                + "Atentamente,\n"
+                + "Equipo de EventosPlus"
+        );
+
         mailSender.send(mensaje);
     }
 }
