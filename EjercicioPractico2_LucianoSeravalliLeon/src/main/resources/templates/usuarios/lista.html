@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head th:replace="~{general/fragmentosGeneral :: head('Gestión de usuarios')}"></head>
 <body>
 
@@ -18,6 +19,32 @@
                 <i class="bi bi-person-plus-fill me-1"></i> Nuevo usuario
             </a>
         </div>
+    </div>
+
+    <div class="form-card mb-4">
+        <form th:action="@{/usuarios/buscarPorRol}" method="get">
+            <div class="row align-items-end">
+                <div class="col-md-8 mb-3">
+                    <label class="form-label">Buscar usuarios por rol</label>
+                    <select name="nombreRol" class="form-select" required>
+                        <option value="">Seleccione un rol</option>
+                        <option th:each="rol : ${roles}"
+                                th:value="${rol.nombre}"
+                                th:text="${rol.nombre}"
+                                th:selected="${rol.nombre == rolSeleccionado}">
+                        </option>
+                    </select>
+                </div>
+                <div class="col-md-4 mb-3 d-flex gap-2">
+                    <button type="submit" class="btn btn-principal w-100">
+                        <i class="bi bi-search me-1"></i> Buscar
+                    </button>
+                    <a th:href="@{/usuarios}" class="btn btn-outline-secondary w-100">
+                        <i class="bi bi-arrow-clockwise me-1"></i> Limpiar
+                    </a>
+                </div>
+            </div>
+        </form>
     </div>
 
     <div class="tabla-personalizada">
@@ -62,7 +89,7 @@
                 </tr>
                 <tr th:if="${#lists.isEmpty(usuarios)}">
                     <td colspan="7" class="text-center py-4 text-muted">
-                        No hay usuarios registrados.
+                        No se encontraron usuarios para el rol seleccionado.
                     </td>
                 </tr>
                 </tbody>

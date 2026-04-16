@@ -21,6 +21,7 @@ public class UsuarioController {
     @GetMapping
     public String listar(Model model) {
         model.addAttribute("usuarios", usuarioService.listarUsuarios());
+        model.addAttribute("roles", rolService.listarRoles());
         return "usuarios/lista";
     }
 
@@ -54,5 +55,13 @@ public class UsuarioController {
     public String detalle(@PathVariable Long id, Model model) {
         model.addAttribute("usuario", usuarioService.obtenerPorId(id));
         return "usuarios/detalle";
+    }
+
+    @GetMapping("/buscarPorRol")
+    public String buscarPorRol(@RequestParam("nombreRol") String nombreRol, Model model) {
+        model.addAttribute("usuarios", usuarioService.buscarPorRol(nombreRol));
+        model.addAttribute("roles", rolService.listarRoles());
+        model.addAttribute("rolSeleccionado", nombreRol);
+        return "usuarios/lista";
     }
 }
