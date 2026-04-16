@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+    <head th:replace="~{general/fragmentosGeneral :: head('Acceso denegado')}"></head>
+    <body>
+
+        <header th:replace="~{general/fragmentosGeneral :: header}"></header>
+
+        <main class="container my-5">
+            <div class="row justify-content-center">
+                <div class="col-lg-8">
+                    <div class="form-card text-center py-5">
+                        <div class="codigo-error">403</div>
+                        <i class="bi bi-shield-lock-fill text-danger mt-3" style="font-size: 3.5rem;"></i>
+                        <h1 class="section-title mt-4">Acceso denegado</h1>
+                        <p class="section-subtitle mx-auto">
+                            No tienes permisos para acceder a esta sección del sistema.
+                            Si crees que esto es un error, por favor comunícate con el administrador.
+                        </p>
+                        <div class="mt-4 d-flex flex-wrap justify-content-center gap-2">
+                            <a th:href="@{/}" class="btn btn-principal">
+                                <i class="bi bi-house-door-fill me-1"></i> Volver al inicio
+                            </a>
+
+                            <a th:href="@{/eventos}" class="btn btn-outline-secondary">
+                                <i class="bi bi-calendar-event-fill me-1"></i> Ver eventos
+                            </a>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <footer th:replace="~{general/fragmentosGeneral :: footer}"></footer>
+        <div th:replace="~{general/fragmentosGeneral :: scripts}"></div>
+
+    </body>
+</html>

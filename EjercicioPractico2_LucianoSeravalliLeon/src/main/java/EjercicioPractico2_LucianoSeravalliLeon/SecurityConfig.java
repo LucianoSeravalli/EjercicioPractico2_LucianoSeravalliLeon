@@ -20,27 +20,30 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
-            .authorizeHttpRequests(auth -> auth
+                .authorizeHttpRequests(auth -> auth
                 .requestMatchers("/", "/login", "/css/**", "/js/**", "/img/**").permitAll()
                 .requestMatchers("/usuarios/**", "/roles/**").hasRole("ADMIN")
                 .requestMatchers("/eventos/nuevo", "/eventos/guardar", "/eventos/editar/**", "/eventos/eliminar/**")
-                    .hasAnyRole("ADMIN", "ORGANIZADOR")
+                .hasAnyRole("ADMIN", "ORGANIZADOR")
                 .requestMatchers("/eventos/**").hasAnyRole("ADMIN", "ORGANIZADOR", "CLIENTE")
                 .anyRequest().authenticated()
-            )
-            .formLogin(form -> form
+                )
+                .formLogin(form -> form
                 .loginPage("/login")
                 .usernameParameter("username")
                 .passwordParameter("password")
                 .defaultSuccessUrl("/", true)
                 .permitAll()
-            )
-            .logout(logout -> logout
+                )
+                .logout(logout -> logout
                 .logoutSuccessUrl("/login?logout")
                 .permitAll()
-            )
-            .authenticationProvider(authenticationProvider())
-            .httpBasic(Customizer.withDefaults());
+                )
+                .exceptionHandling(exception -> exception
+                .accessDeniedPage("/error/403")
+                )
+                .authenticationProvider(authenticationProvider())
+                .httpBasic(Customizer.withDefaults());
 
         return http.build();
     }

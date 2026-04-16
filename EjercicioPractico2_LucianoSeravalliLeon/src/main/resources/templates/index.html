@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
     <head th:replace="~{general/fragmentosGeneral :: head('Inicio')}"></head>
     <body>
 
@@ -18,7 +19,9 @@
                             <a th:href="@{/eventos}" class="btn btn-principal">
                                 <i class="bi bi-calendar2-event me-1"></i> Ver eventos
                             </a>
-                            <a th:href="@{/usuarios}" class="btn btn-secundario">
+
+                            <a th:href="@{/usuarios}" class="btn btn-secundario"
+                               sec:authorize="hasRole('ADMIN')">
                                 <i class="bi bi-people me-1"></i> Administrar usuarios
                             </a>
                         </div>

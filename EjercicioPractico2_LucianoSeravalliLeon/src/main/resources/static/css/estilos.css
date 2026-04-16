@@ -278,3 +278,11 @@ a {
         text-align: center;
     }
 }
+
+.codigo-error {
+    font-size: 6rem;
+    font-weight: 800;
+    color: #dc3545;
+    line-height: 1;
+    letter-spacing: 2px;
+}
